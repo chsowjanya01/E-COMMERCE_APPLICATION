@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple E-commerce</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Simple E-commerce</h1>
+    </header>
+
+    <section class="products">
+        <!-- Product listings will be displayed here -->
+        {% for product in products %}
+        <div class="product">
+            <h3>{{ product['name'] }}</h3>
+            <p>Price: ${{ product['price'] }}</p>
+            <button onclick="addToCart('{{ product['name'] }}', {{ product['price'] }})">Add to Cart</button>
+        </div>
+        {% endfor %}
+    </section>
+
+    <section class="cart">
+        <h2>Your Cart</h2>
+        <ul id="cart-items">
+            <!-- Cart items will be displayed here -->
+        </ul>
+        <p>Total: $<span id="cart-total">0.00</span></p>
+        <button onclick="checkout()">Checkout</button>
+    </section>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
